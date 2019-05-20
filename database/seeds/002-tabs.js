@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
       return knex('tabs').insert([
         {
         user_id: 1,  
-        username: 'lambda',
+        // user: 'lambda',
         title: 'google', 
         website: 'https://google.com/',
         catagory: 'search engine',
@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         user_id: 1, 
-        username: 'lambda', 
+        // user: 'lambda', 
         title: 'twitter', 
         website: 'https://twitter.com/',
         catagory: 'socialmedia',
