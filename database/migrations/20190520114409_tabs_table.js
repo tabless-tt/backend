@@ -22,12 +22,12 @@ exports.up = function(knex, Promise) {
       .onUpdate("CASCADE")
       .notNullable();
 
-      tbl
-      .integer("user")
-      .references("username")
-      .inTable("users")
-      .onDelete("CASCADE")
-      .onUpdate("CASCADE");
+      // tbl
+      // .integer("user")
+      // .references("username")
+      // .inTable("users")
+      // .onDelete("CASCADE")
+      // .onUpdate("CASCADE");
   });
 
 
