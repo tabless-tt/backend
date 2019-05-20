@@ -5,9 +5,22 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+        {
+        userId: 1,  
+        title: 'google', 
+        website: 'https://google.com/',
+        catagory: 'search engine',
+        favicon: 'https://www.google.com/favicon.ico',
+        description: 'This is my favorite search engine'
+      },
+      {
+        userId: 1,  
+        title: 'twitter', 
+        website: 'https://twitter.com/',
+        catagory: 'socialmedia',
+        favicon: 'https://twitter.com/favicon.ico',
+        description: 'always using twitter'
+      },
       ]);
     });
 };

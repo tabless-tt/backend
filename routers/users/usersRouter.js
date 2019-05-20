@@ -8,6 +8,8 @@ router.get("/", restricted, (req, res) => {
     .then(users => {
       res.json({ users, token: req.decodedToken });
     })
-    .catch((err = res.send(err)));
+    .catch(err => res.send(err));
 });
+
+module.exports = router;
 

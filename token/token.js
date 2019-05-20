@@ -5,13 +5,13 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    roles: ["user"]
+    // roles: ["user"]
   };
 
   const options = {
     expiresIn: "24h"
   };
-  return jwt.sign(payload, secret.jwtSecret, option);
+  return jwt.sign(payload, secret.jwtSecret, options);
 }
 
 module.exports = generateToken;
