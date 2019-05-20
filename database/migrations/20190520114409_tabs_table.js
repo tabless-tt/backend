@@ -23,7 +23,7 @@ exports.up = function(knex, Promise) {
       .notNullable();
 
       tbl
-      .integer("username")
+      .integer("user")
       .references("username")
       .inTable("users")
       .onDelete("CASCADE")
