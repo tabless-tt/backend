@@ -42,6 +42,7 @@ function findById(id) {
     .select(
       { username: "users.username" },
       "user_id",
+      { tab_id: "tabs.id" },
       "title",
       "website",
       "catagory",

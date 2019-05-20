@@ -18,10 +18,11 @@ router.get("/", restricted, (req, res) => {
 router.get("/:userId", restricted, (req, res) => {});
 
 router.post("/", restricted, async (req, res) => {
-  const newTab = req.body;
-  if (newTab.user_id) {
+  const tab = req.body;
+  console.log(tab)
+  if (tab.title) {
     try {
-      const inserted = await Tabs.add(newTab);
+      const inserted = await Tabs.add(tab);
       res.status(201).json(inserted);
     } catch (error) {
       res.status(500).json(
@@ -55,13 +56,12 @@ router.put("/:id", restricted, (req, res) => {});
 // });
 
 router.delete("/:id", restricted, (req, res) => {
-  Tabs
-    .remove(req.params.id)
+  Tabs.remove(req.params.id)
     .then(del => {
       res
-        .status(204)
-        .json("del")
-        
+        .status(200)
+        .json({ message: "the tab has successfully been deleted" })
+        .end(del);
     })
     .catch(err => {
       res.status(500).json("err");
