@@ -15,12 +15,22 @@ exports.up = function(knex, Promise) {
     tbl.timestamps(true, true);
 
     tbl
-      .integer("userId")
+      .integer("user_id")
       .references("id")
+      .inTable("users")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE")
+      .notNullable();
+
+      tbl
+      .integer("username")
+      .references("username")
       .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
   });
+
+
 };
 
 exports.down = function(knex, Promise) {
