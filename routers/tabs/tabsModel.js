@@ -5,39 +5,72 @@ module.exports = {
   remove,
   update,
   getTabs,
-  findTabsBy,
-  findByuserId
+  findById,
+  findByUserId
 };
 
 function getTabs() {
-  return db("tabs");
+  return db("tabs")
+    .join("users", "tabs.user_id", "=", "users.id")
+    .select(
+      { username: "users.username" },
+      "tabs.user_id",
+      "tabs.title",
+      {tab_id: "tabs.id"},
+      "tabs.website",
+      "tabs.catagory",
+      "tabs.favicon",
+      "tabs.description",
+      "tabs.created_at",
+      "tabs.updated_at"
+    );
 }
 
-async function add(tab) {
-  const id = await db("tabs")
-    .returning(id)
-    .insert(tab);
-
-  return id;
+function add(tab) {
+  return db("tabs")
+    .insert(tab, "id")
+    .then(([id]) => {
+      return findById(id);
+    });
 }
 
-function findTabsBy(filter) {
-  return db("tabs").where(filter);
+function findById(id) {
+  return db("tabs")
+    .where({ "tabs.user_id": id })
+    .first()
+    .join("users", "tabs.user_id", "=", "user.id")
+    .select(
+      { username: "users.username" },
+      "tabs.user_id",
+      "tabs.title",
+      "tabs.website",
+      "tabs.catagory",
+      "tabs.favicon",
+      "tabs.description",
+      "tabs.created_at",
+      "tabs.updated_at"
+    );
 }
 
-function update(id, change) {
+function update(id, changes) {
   return db("tabs")
     .where({ id })
-    .returning("*")
-    .update(change, "*");
+    .update(changes)
+    .then(count => {
+      if (count < 0) {
+        return findById(id);
+      } else {
+        return null;
+      }
+    });
 }
 
 function remove(id) {
   return db("tabs")
-    .where(id)
+    .where({id})
     .del();
 }
 
-function findByuserId(userId) {
-  return db("tabs").where({ userId });
+function findByUserId(user_id) {
+  return db("tabs").where({ user_id });
 }
