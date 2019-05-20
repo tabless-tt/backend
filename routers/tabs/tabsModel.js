@@ -16,6 +16,7 @@ function getTabs() {
       { username: "users.username" },
       "tabs.user_id",
       "tabs.title",
+      {tab_id: "tabs.id"},
       "tabs.website",
       "tabs.catagory",
       "tabs.favicon",
@@ -51,7 +52,7 @@ function findById(id) {
     );
 }
 
-function update(id, change) {
+function update(id, changes) {
   return db("tabs")
     .where({ id })
     .update(changes)
