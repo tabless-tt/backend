@@ -22,9 +22,22 @@ async function add(tab) {
 }
 
 function findTabsBy(filter) {
-  return db('tabs').where(filter)
+  return db("tabs").where(filter);
 }
 
 function update(id, change) {
-  return db('tabs')
+  return db("tabs")
+    .where({ id })
+    .returning("*")
+    .update(change, "*");
+}
+
+function remove(id) {
+  return db("tabs")
+    .where(id)
+    .del();
+}
+
+function findByuserId(userId) {
+  return db("tabs").where({ userId });
 }
