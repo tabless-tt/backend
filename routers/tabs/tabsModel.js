@@ -28,27 +28,27 @@ function getTabs() {
 
 function add(tab) {
   return db("tabs")
-    .insert(tab, "id")
+    .insert(tab)
     .then(([id]) => {
+      console.log(id)
       return findById(id);
     });
 }
 
 function findById(id) {
   return db("tabs")
-    .where({ "tabs.user_id": id })
-    .first()
-    .join("users", "tabs.user_id", "=", "user.id")
+    .where("tabs.id", id )
+    .join("users",  "users.id","tabs.user_id")
     .select(
       { username: "users.username" },
-      "tabs.user_id",
-      "tabs.title",
-      "tabs.website",
-      "tabs.catagory",
-      "tabs.favicon",
-      "tabs.description",
-      "tabs.created_at",
-      "tabs.updated_at"
+      "user_id",
+      "title",
+      "website",
+      "catagory",
+      "favicon",
+      "description",
+      "created_at",
+      "updated_at"
     );
 }
 
