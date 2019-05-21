@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
 
     tbl.string("website").notNullable();
 
-    tbl.string("catagory", 128);
+    tbl.string("category", 128);
 
     tbl.string("favicon");
 

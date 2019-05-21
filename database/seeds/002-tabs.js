@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
         // user: 'lambda',
         title: 'google', 
         website: 'https://google.com/',
-        catagory: 'search engine',
+        category: 'search engine',
         favicon: 'https://www.google.com/favicon.ico',
         description: 'This is my favorite search engine'
       },
@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
         // user: 'lambda', 
         title: 'twitter', 
         website: 'https://twitter.com/',
-        catagory: 'socialmedia',
+        category: 'socialmedia',
         favicon: 'https://twitter.com/favicon.ico',
         description: 'always using twitter'
       },
