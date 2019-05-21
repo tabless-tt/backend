@@ -6,6 +6,7 @@ const Auth = require("./authModel");
 // const generateToken = require("../../token/token");
 const jwt = require('jsonwebtoken')
 
+
 router.post("/register", (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);

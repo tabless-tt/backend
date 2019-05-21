@@ -5,10 +5,18 @@ const Tabs = require("../tabs/tabsModel");
 const restricted = require("../../middleware/restrictedMiddleware");
 
 //get all users and decoded token of logged in user
-router.get("/", restricted, (req, res) => {
+router.get("/all", restricted, (req, res) => {
   Users.find()
     .then(users => {
       res.json({ users, token: req.decodedToken });
+    })
+    .catch(err => res.send(err));
+});
+
+router.get("/", restricted, (req, res) => {
+  Users.find()
+    .then(() => {
+      res.status(200).json(req.decodedToken );
     })
     .catch(err => res.send(err));
 });
