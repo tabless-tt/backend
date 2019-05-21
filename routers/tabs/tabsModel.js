@@ -1,6 +1,7 @@
 const db = require("../../database/dbConfig");
 
 module.exports = {
+  find,
   add,
   remove,
   update,
@@ -8,6 +9,10 @@ module.exports = {
   findById,
   findByUserId
 };
+
+function find() {
+  
+}
 
 function getTabs() {
   return db("tabs")
