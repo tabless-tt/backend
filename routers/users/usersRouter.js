@@ -4,6 +4,7 @@ const Users = require("./usersModel");
 const Tabs = require("../tabs/tabsModel");
 const restricted = require("../../middleware/restrictedMiddleware");
 
+//get all users and decoded token of logged in user
 router.get("/", restricted, (req, res) => {
   Users.find()
     .then(users => {
@@ -12,14 +13,15 @@ router.get("/", restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.get("/:id/", (req, res) => {
+//get users tabs
+router.get("/:id/", restricted, (req, res) => {
   Users.findById(req.params.id)
-    .then(users => {
-      Tabs.find()
+    .then(user => {
+      Tabs.getTabs()
         .where({ user_id: req.params.id })
         .then(tabs => {
-          users.tabs = tabs;
-          return res.status(200).json(users);
+          user.tabs = tabs;
+          return res.status(200).json(user);
         });
     })
     .catch(err => {
