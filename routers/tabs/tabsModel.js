@@ -11,7 +11,7 @@ module.exports = {
 };
 
 function find() {
-  
+
 }
 
 function getTabs() {
@@ -23,7 +23,7 @@ function getTabs() {
       "tabs.title",
       {tab_id: "tabs.id"},
       "tabs.website",
-      "tabs.catagory",
+      "tabs.category",
       "tabs.favicon",
       "tabs.description",
       "tabs.created_at",
@@ -50,7 +50,7 @@ function findById(id) {
       { tab_id: "tabs.id" },
       "title",
       "website",
-      "catagory",
+      "category",
       "favicon",
       "description",
       "created_at",
@@ -63,7 +63,7 @@ function update(id, changes) {
     .where({ id })
     .update(changes)
     .then(count => {
-      if (count < 0) {
+      if (count > 0) {
         return findById(id);
       } else {
         return null;

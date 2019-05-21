@@ -35,7 +35,20 @@ router.post("/", restricted, async (req, res) => {
   }
 });
 
-router.put("/:id", restricted, (req, res) => {});
+router.put("/:id", restricted, (req, res) => {
+  const id = req.params.id
+  const changes = req.body
+  Tabs
+  .update(id, changes)
+  .then(update => {
+    res.status(200).json(update);
+  })
+  .catch(error => {
+    res.status(500).json({
+      errorMessage: error
+    });
+  });
+});
 
 // router.delete("/:id", restricted, async (req, res) => {
 //   try {
