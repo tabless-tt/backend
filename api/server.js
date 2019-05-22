@@ -18,7 +18,7 @@ server.use("/api/users", usersRouter);
 server.use("/api/tabs", tabsRouter);
 
 server.get("/", (req, res) => {
-  res.send("api running");
+  res.status(200).json({api : "Tabless Thursday api running"})
 });
 
 module.exports = server;
