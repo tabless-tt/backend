@@ -19,19 +19,39 @@ describe("auth model", () => {
       let user = await Auth.add({ username: "irving", password: "irving" });
       expect(user.username).toBe("irving");
 
-      user = await Auth.add({ username: "sam", password: "same"  });
+      user = await Auth.add({ username: "sam", password: "same" });
       expect(user.username).toBe("sam");
 
       const users = await db("users");
       expect(users).toHaveLength(2);
-
-      expect(Auth.find()).toBeArray()
     });
-    
-    it("should return an array", async () => {
-      expect(Auth.find()).toBeArray()
-    })
   });
+  describe("find()", () => {
+    it("should return an array", async () => {
+      const find = await Auth.find();
+      const array = [];
+      expect(find).toEqual(array);
+    });
+  });
+  describe("add(), findById() together", () => {
+    it("should return users info, email null", async () => {
+      let user = await Auth.add({ username: "irving", password: "irving" });
+      // expect(user.username).toBe("irving");
+
+      const find = await Auth.findById(1);
+      const array = [];
+      expect(find).toEqual({"email": null, "id": 1, "password": "irving", "username": "irving"});
+    });
+
+    it("should return users info, email null", async () => {
+      let user = await Auth.add({ username: "irving", password: "irving", email: "irving@gmail.com" });
+      // expect(user.username).toBe("irving");
+
+      const find = await Auth.findById(1);
+      const array = [];
+      expect(find).toEqual({"email": "irving@gmail.com", "id": 1, "password": "irving", "username": "irving"});
+    });
+    });
 
 
 });
