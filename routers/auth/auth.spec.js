@@ -43,7 +43,7 @@ describe("auth model", () => {
       expect(find).toEqual({"email": null, "id": 1, "password": "irving", "username": "irving"});
     });
 
-    it("should return users info, email null", async () => {
+    it("should return users info", async () => {
       let user = await Auth.add({ username: "irving", password: "irving", email: "irving@gmail.com" });
       // expect(user.username).toBe("irving");
 
