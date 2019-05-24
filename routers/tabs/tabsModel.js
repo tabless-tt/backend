@@ -10,9 +10,7 @@ module.exports = {
   findByUserId
 };
 
-function find() {
-
-}
+function find() {}
 
 function getTabs() {
   return db("tabs")
@@ -21,7 +19,7 @@ function getTabs() {
       { username: "users.username" },
       "tabs.user_id",
       "tabs.title",
-      {tab_id: "tabs.id"},
+      { tab_id: "tabs.id" },
       "tabs.website",
       "tabs.category",
       "tabs.favicon",
@@ -31,19 +29,16 @@ function getTabs() {
     );
 }
 
-function add(tab) {
-  return db("tabs")
-    .insert(tab)
-    .then(([id]) => {
-      console.log(id)
-      return findById(id);
-    });
+async function add(tab) {
+  const [id] = await db("tabs").insert(tab, "id");
+
+  return findById(id);
 }
 
 function findById(id) {
   return db("tabs")
-    .where("tabs.id", id )
-    .join("users",  "users.id","tabs.user_id")
+    .where("tabs.id", id)
+    .join("users", "users.id", "tabs.user_id")
     .select(
       { username: "users.username" },
       "user_id",
@@ -73,7 +68,7 @@ function update(id, changes) {
 
 function remove(id) {
   return db("tabs")
-    .where({id})
+    .where({ id })
     .del();
 }
 
