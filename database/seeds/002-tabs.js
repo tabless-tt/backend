@@ -2,13 +2,13 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('tabs')
-  // .del()
+  .del()
     .then(function () {
-      // Inserts seed entries
+    
       return knex('tabs').insert([
         {
         user_id: 1,  
-        // user: 'lambda',
+        
         title: 'google', 
         website: 'https://google.com/',
         category: 'search engine',
@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         user_id: 1, 
-        // user: 'lambda', 
+      
         title: 'twitter', 
         website: 'https://twitter.com/',
         category: 'socialmedia',
@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         user_id: 3, 
-        // user: 'lambda', 
+       
         title: 'twitter', 
         website: 'https://twitter.com/',
         category: 'socialmedia',
