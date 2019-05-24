@@ -1,7 +1,8 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('tabs').del()
+  return knex('tabs')
+  // .del()
     .then(function () {
       // Inserts seed entries
       return knex('tabs').insert([
@@ -16,6 +17,15 @@ exports.seed = function(knex, Promise) {
       },
       {
         user_id: 1, 
+        // user: 'lambda', 
+        title: 'twitter', 
+        website: 'https://twitter.com/',
+        category: 'socialmedia',
+        favicon: 'https://twitter.com/favicon.ico',
+        description: 'always using twitter'
+      },
+      {
+        user_id: 3, 
         // user: 'lambda', 
         title: 'twitter', 
         website: 'https://twitter.com/',
